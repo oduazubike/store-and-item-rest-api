@@ -14,10 +14,6 @@ app.config["JWT_SECRET_KEY"] = "super-secret"
 api = Api(app)
 
 
-@app.before_first_request
-def create_table():
-    db.create_all()
-
 
 jwt = JWTManager(app)
 
