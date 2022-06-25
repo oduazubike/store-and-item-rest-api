@@ -8,12 +8,9 @@ from resources.items_resource import Item, ItemsList
 from resources.user_resource import UserRegister, UserLogin
 from resources.stores_resource import Store, StoresList
 
-uri = os.environ.get('DATABASE_URL')
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(uri, 'sqlite:///database.db')
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL', 'sqlite:///database.db')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["JWT_SECRET_KEY"] = "super-secret"
 api = Api(app)
